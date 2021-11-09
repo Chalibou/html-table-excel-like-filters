@@ -1,0 +1,26 @@
+.cTab_base{
+    position: absolute;
+    width: auto;
+    height: auto;
+    background-color: hsl(204, 98%, 26%);
+    color: hsl(0, 0%, 91%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0.1rem 1rem;
+    display: none;
+}
+
+.cTab_label_holder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cTab_hasSearch{
+    color: red;
+}
+
+.cTab_hidden{
+    display: none;
+}

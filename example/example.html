@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Xali</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/c_table.css">
+</head>
+
+<body>
+    <table id="existingTable">
+        <thead>
+            <tr>
+                <th>NAME</th><th>ROLE</th><th>DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alberto</td><td>Operative</td><td>25/09/2021</td>
+            </tr>
+            <tr>
+                <td>Julio</td><td>Operative</td><td>21/04/2020</td>
+            </tr>
+            <tr>
+                <td>Frederika</td><td>Manager</td><td>02/04/2019</td>
+            </tr>
+            <tr>
+                <td>Frederika</td><td>Operative</td><td>15/12/2018</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="holderForGeneratedTable"></div>
+
+    <!--Main script-->
+    <script src="/js/common.js"></script>
+    <script src="/js/c_table.js"></script>
+    <script>
+
+        //============================
+        //Create filters from an existing table
+        //============================
+
+        const staticTab = new SuperTable("myTable",{
+            name:'Users',
+            avoid:[3]
+        });
+
+        //============================
+        //Create filters from an array
+        //============================
+
+        //Create the array for example purpose
+        const data = [
+        ["Name","Role","Activity","Dummy","Controls"],
+        ["CCB567D86BC859F4","Joe","Manager","Banlouze","Dummy",{ctrl:"sayHi"}],
+        ["15188","Paul","Tech","Actif","Dummy",{ctrl:"sayHi"}],
+        ["15315","Jack","Admin","Banlouze","Dummy",{ctrl:"sayHi"}],
+        ["15889","Paul","Manager","Banlouze","Dummy",{ctrl:"sayHi"}]]
+
+        //Build the options for the table
+        const options = {
+            name:"User-generated",
+            target:document.getElementById("holderForGeneratedTable"),
+            avoid:[3,4],
+            rowAction:"showModal",
+            actions:{
+                sayHi:{
+                    label:"Say hi !",
+                    func:(e)=>{
+                        e.stopPropagation();
+                        const id = e.currentTarget.id;
+                        console.log("Hi, my name is ",id);
+                    }
+                },
+                showModal:{
+                    label:"Show your name",
+                    func:(row)=>{
+                        const targetId = row.id;
+                        console.log("Hey, I am associated with item ",targetId);
+                    }
+                }
+            }
+        }
+
+        //Invoke table creation from the array
+        const genereatedTab = new SuperTable(data,options);
+
+    </script>
+    
+</body>
+</html>
